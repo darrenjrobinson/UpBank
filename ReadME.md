@@ -52,7 +52,7 @@ The module supports multiple sets of credentials. One set can be set as default 
 To be used in conjunction with **Save-UpBankCredential** to negate the need to use **Set-UpBankCredential** each time the module is loaded. 
 
 Set-UpBankCredential needs to be passed a PowerShell Credential object. This can be generated using **_Get-Credential_**
-The value provided for User (when using get-credential) is used as the profile name.
+The value provided for User (when using get-credential) is used as the profile name. Generate your Up Bank [Personal Access Token here](https://api.up.com.au/getting_started)
 
 ```
 $myUpBankCredentials = Get-Credential
