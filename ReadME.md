@@ -4,6 +4,8 @@ PowerShell Module for [Up Bank](https://up.com.au/)
 
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/UpBank.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/UpBank) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/UpBank.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/UpBank)
 
+[Associated Blogpost](https://blog.darrenjrobinson.com/up-bank-powershell-module/)
+
 ## Description
 A PowerShell Module enabling simple methods for accessing your Up Bank Account. 
 
