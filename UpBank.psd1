@@ -1,24 +1,25 @@
 @{
-    RootModule        = 'UpBank.psm1'
-    ModuleVersion     = '1.0.0'
-    GUID              = 'f96fa33b-1225-4b81-bec3-f91bbb61a40f'
-    Author            = 'Darren J Robinson'
-    CompanyName       = 'Community'
-    Copyright         = '(c) 2020 Darren J Robinson. All rights reserved.'
-    Description       = 'PowerShell Module for Up Bank'
-    PowerShellVersion = '5.1'
-    RequiredModules   = ''
-    FunctionsToExport = @('Test-UpBankAPI','Get-UpBankAccounts','Get-UpBankAccount','Set-UpBankCredential','Save-UpBankConfiguration','Get-UpBankTransactions','Get-UpBankTransaction','Get-UpBankAccountTransactions','Switch-UpBankProfile')
-    CmdletsToExport   = @()
-    VariablesToExport = @()
-    AliasesToExport   = @()
+    RootModule           = 'UpBank.psm1'
+    ModuleVersion        = '1.0.1'
+    GUID                 = 'f96fa33b-1225-4b81-bec3-f91bbb61a40f'
+    Author               = 'Darren J Robinson'
+    CompanyName          = 'Community'
+    Copyright            = '(c) 2020 Darren J Robinson. All rights reserved.'
+    Description          = 'PowerShell Module for Up Bank'
+    PowerShellVersion    = '5.1'
+    CompatiblePSEditions = 'Core', 'Desktop'
+    RequiredModules      = ''
+    FunctionsToExport    = @('Test-UpBankAPI', 'Get-UpBankAccounts', 'Get-UpBankAccount', 'Set-UpBankCredential', 'Save-UpBankConfiguration', 'Get-UpBankTransactions', 'Get-UpBankTransaction', 'Get-UpBankAccountTransactions', 'Switch-UpBankProfile', 'Get-UpBankCategories', 'Get-UpBankCategory', 'Get-UpBankTags')
+    CmdletsToExport      = @()
+    VariablesToExport    = @()
+    AliasesToExport      = @()
 }
 
 # SIG # Begin signature block
 # MIIX8wYJKoZIhvcNAQcCoIIX5DCCF+ACAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHw2tfPTwK+/wspfkokVSOuFa
-# M8SgghMmMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU7/VwUljor9Tz7R6nIxJUo5CJ
+# 3yagghMmMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
 # AQUFADCBizELMAkGA1UEBhMCWkExFTATBgNVBAgTDFdlc3Rlcm4gQ2FwZTEUMBIG
 # A1UEBxMLRHVyYmFudmlsbGUxDzANBgNVBAoTBlRoYXd0ZTEdMBsGA1UECxMUVGhh
 # d3RlIENlcnRpZmljYXRpb24xHzAdBgNVBAMTFlRoYXd0ZSBUaW1lc3RhbXBpbmcg
@@ -125,22 +126,22 @@
 # A1UEAxMoRGlnaUNlcnQgU0hBMiBBc3N1cmVkIElEIENvZGUgU2lnbmluZyBDQQIQ
 # DOzRdXezgbkTF+1Qo8ZgrzAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAig
 # AoAAoQKAADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgEL
-# MQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUL5ektl3PeeMeIb6dCWyh
-# 1j4qC/MwDQYJKoZIhvcNAQEBBQAEggEAYP5wTlGZrc6spjfs5Y1bM84+VgoucPB5
-# BgEw/X74MWMZM7AewSGB+jjaARx5tdFqGsnAjr1bKBI2rb+35xRqNGXjVOjCqpDe
-# NHnyR5L/fLgOrVZogH0K5/ifUZps12AGmsz41E9TVk9+26YB4CtftYAEaGU3Rqzs
-# a2POyVz+cW54JNFm4UE4e3e6wJ5jniDcAFyYHOY7W22o3bdq7yTQidKd3kB7iIMP
-# hnu7l9BY8tA/n0LDzDb7/N1jj3jr8IG9RpAH/vAoiVHYe6RwNppixghLQd3rORRK
-# QrMQ1hPMCFV/v/MVUSSqoGWXshkZhdvsi71EvIa/12yDyCJ9auivkKGCAgswggIH
+# MQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUyJTHNw+oVZA1oxCEv70T
+# RQmQ4p4wDQYJKoZIhvcNAQEBBQAEggEARQ+IfoHyAVZfniHc10A1Tt50w/ZCHMIX
+# EzcoduJEgIuoVVIlcf65P9WTEONCfzeTNMyobh1uwBoDJDuYmvpNLxFHMHIqdDuK
+# UNhlCmEbalV2ua7Cue0hvfqALqu92RYPC5quhHIbalmDMIJnu91M1cVgZk92JgFv
+# J7gbvqvPDlfwHjWE7iKf+goeB3OSFg8Bo/XeVfKpBtERVvxBz9MA1uw1LtZr1s7s
+# Erj0lBT/Kb1KG31bFNkboO0gdiY6hh2Nq8K15dbrvE7hOpREj3VyLL3IiKdflF8Q
+# WQqyw/emy2/Gl75l9LRzeZuQiZZ1jEK0i0bX9LR7zjW3tdjw7whvpaGCAgswggIH
 # BgkqhkiG9w0BCQYxggH4MIIB9AIBATByMF4xCzAJBgNVBAYTAlVTMR0wGwYDVQQK
 # ExRTeW1hbnRlYyBDb3Jwb3JhdGlvbjEwMC4GA1UEAxMnU3ltYW50ZWMgVGltZSBT
 # dGFtcGluZyBTZXJ2aWNlcyBDQSAtIEcyAhAOz/Q4yP6/NW4E2GqYGxpQMAkGBSsO
 # AwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEP
-# Fw0yMDA3MzAwMzEzMjZaMCMGCSqGSIb3DQEJBDEWBBR5lyIOCZ/+lRRkbzXAF6Z3
-# ekG2LzANBgkqhkiG9w0BAQEFAASCAQCMQzycf7z0AUbiqA+6FZmNT0u0JX1v16Ts
-# gSFGJWM0E8W8Agm9Iw1YCv3HY/Hzi7H+SL4TE1t/9LXiAyU8DqcXOH6sGu0g+PAU
-# 3VjHjbObxgHb9EHjfC6qQy8j2v0yl5hzyfyPw51mEMpVbGJREiHUIENHwFqCYDmz
-# /+ZHSLga18KYY+Ifuq30XO04y7isGux49bv9aAvSAZqsb4BUEaYZbB9zf3nwr2gZ
-# l5RLdLTmSySyznF4QncwPxquqRzkgx8o0G/JDs/vD2MWorWyc+k/cdkMVL+zuS+M
-# nH0ofHEyIoyj+1mtHeVxuxcjnCFWXi3Y/sdB4QqquANLgjNo2ZOn
+# Fw0yMDA4MzEwNjQzNTdaMCMGCSqGSIb3DQEJBDEWBBQ+Z9znf9Po9usZjbkoMpph
+# 2lWVcDANBgkqhkiG9w0BAQEFAASCAQBiqKw5OtFqaL972E5ym+hz2o/4c+Dm+nom
+# so35y8BY88xaw9bsF7Efm9zBdHPxecsP/hFGuSE/YCXJ3uZ91b5+0TKU6ol/SQH4
+# 0yPF4iqQwQ8YulUN1fpW15JwE4B1TC57unGoS1UNAClrkdhNMHPz6nMrzWWtEOXX
+# ChBFSSWxU00+kGm6gVsaF2Vd5YDD7NhgYdonS4+Fbmvb31FS1MC+AetFA/pCqN9m
+# 81GTOVg54FmCWVljqgqbZnVOEKk+VMIpcfnNSdGWzhZRYmBxMyC4J6cgu5aSxWjU
+# xJgMhfpfyqb0YzLMWbLZM7eAXu7/JX81khG41nRe/zZq8ZfgtuFS
 # SIG # End signature block

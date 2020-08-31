@@ -597,11 +597,203 @@ http://darrenjrobinson.com/
     }
 }
 $CommandsToExport += 'Get-UpBankAccountTransactions'
+
+function Get-UpBankCategories {
+    <#
+.SYNOPSIS
+List UpBank Categories 
+
+.DESCRIPTION
+List UpBank Categories 
+
+.PARAMETER pageSize
+The number of records to return in each page. Defaults to 100
+
+.EXAMPLE
+Get-UpBankCategories 
+
+.LINK
+http://darrenjrobinson.com/
+
+#>
+
+    param(
+        [Parameter(Mandatory = $false, Position = 0)]
+        [String] $pageSize = "100"
+    )
+
+    if ($token) {
+        try {
+            if (!$pageSize -lt "100") {
+                $recordsToReturn = $pageSize
+            }
+            else {
+                $recordsToReturn = $pageSize
+                $pageSize = "100"
+            }
+
+            $response = Invoke-RestMethod -Method Get `
+                -Uri "https://api.up.com.au/api/$($APIVersion)/categories?page[size]=$($pageSize)" `
+                -Headers @{Authorization = "Bearer $($token)" }
+            
+            if ($response.links.next) {
+                $fullResponse = $null 
+                $fullResponse += $response.data
+                while ($response.links.next) {
+                    $results = $null 
+                    $results = Invoke-RestMethod -Method Get `
+                        -Uri $response.links.next `
+                        -Headers @{Authorization = "Bearer $($token)" }
+                    if ($results) {
+                        $fullResponse += $results.data
+                        $response = $results
+                    }
+                    if ($fullResponse.count -gt $recordsToReturn) {
+                        return $fullResponse | Select-Object -First $recordsToReturn
+                        break  
+                    }
+                }
+                return $fullResponse.data
+            }
+            else {
+                return $response.data  
+            }
+
+        }
+        catch {    
+            Write-Error $_
+            break 
+        }
+    }
+    else {
+        Write-Error "No Personal Access Token found in Up Bank Configuration. Use Set-UpBankCredential and Save-UpBankConfiguration to securely store you Up Bank Personal Access Token."
+        break
+    }
+}
+$CommandsToExport += 'Get-UpBankCategories'
+
+function Get-UpBankCategory {
+    <#
+.SYNOPSIS
+Retrieve a specific Up Bank Category.
+
+.DESCRIPTION
+Retrieve a specific Up Bank Category.
+
+.PARAMETER id
+(Required) ID of the Category to return.
+
+.EXAMPLE
+Get-UpBankCategory -id technology
+
+.LINK
+http://darrenjrobinson.com/
+
+#>
+
+    param(
+        [Parameter(Mandatory = $true, Position = 0)]
+        [String] $id
+    )
+
+    if ($token) {
+        try {
+            $response = Invoke-RestMethod -Method Get `
+                -Uri "https://api.up.com.au/api/$($APIVersion)/categories/$($id)" `
+                -Headers @{Authorization = "Bearer $($token)" }
+            return $response.data  
+        }
+        catch {    
+            Write-Error $_
+            break 
+        }
+    }
+    else {
+        Write-Error "No Personal Access Token found in Up Bank Configuration. Use Set-UpBankCredential and Save-UpBankConfiguration to securely store you Up Bank Personal Access Token."
+        break
+    }
+}
+$CommandsToExport += 'Get-UpBankCategory'
+
+function Get-UpBankTags {
+    <#
+.SYNOPSIS
+List UpBank Tags 
+
+.DESCRIPTION
+List UpBank Tags 
+
+.PARAMETER pageSize
+The number of records to return in each page. Defaults to 100
+
+.EXAMPLE
+Get-UpBankTags 
+
+.LINK
+http://darrenjrobinson.com/
+
+#>
+
+    param(
+        [Parameter(Mandatory = $false, Position = 0)]
+        [String] $pageSize = "100"
+    )
+
+    if ($token) {
+        try {
+            if (!$pageSize -lt "100") {
+                $recordsToReturn = $pageSize
+            }
+            else {
+                $recordsToReturn = $pageSize
+                $pageSize = "100"
+            }
+
+            $response = Invoke-RestMethod -Method Get `
+                -Uri "https://api.up.com.au/api/$($APIVersion)/tags?page[size]=$($pageSize)" `
+                -Headers @{Authorization = "Bearer $($token)" }
+            
+            if ($response.links.next) {
+                $fullResponse = $null 
+                $fullResponse += $response.data
+                while ($response.links.next) {
+                    $results = $null 
+                    $results = Invoke-RestMethod -Method Get `
+                        -Uri $response.links.next `
+                        -Headers @{Authorization = "Bearer $($token)" }
+                    if ($results) {
+                        $fullResponse += $results.data
+                        $response = $results
+                    }
+                    if ($fullResponse.count -gt $recordsToReturn) {
+                        return $fullResponse | Select-Object -First $recordsToReturn
+                        break  
+                    }
+                }
+                return $fullResponse.data
+            }
+            else {
+                return $response.data  
+            }
+
+        }
+        catch {    
+            Write-Error $_
+            break 
+        }
+    }
+    else {
+        Write-Error "No Personal Access Token found in Up Bank Configuration. Use Set-UpBankCredential and Save-UpBankConfiguration to securely store you Up Bank Personal Access Token."
+        break
+    }
+}
+$CommandsToExport += 'Get-UpBankTags'
+
 # SIG # Begin signature block
 # MIIX8wYJKoZIhvcNAQcCoIIX5DCCF+ACAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU/rFVkY1Z57D6YKJXQXxiebRx
-# H0OgghMmMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUXC4eQZtpri4l7IZ8EULQr2w2
+# AlSgghMmMIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
 # AQUFADCBizELMAkGA1UEBhMCWkExFTATBgNVBAgTDFdlc3Rlcm4gQ2FwZTEUMBIG
 # A1UEBxMLRHVyYmFudmlsbGUxDzANBgNVBAoTBlRoYXd0ZTEdMBsGA1UECxMUVGhh
 # d3RlIENlcnRpZmljYXRpb24xHzAdBgNVBAMTFlRoYXd0ZSBUaW1lc3RhbXBpbmcg
@@ -708,22 +900,22 @@ $CommandsToExport += 'Get-UpBankAccountTransactions'
 # A1UEAxMoRGlnaUNlcnQgU0hBMiBBc3N1cmVkIElEIENvZGUgU2lnbmluZyBDQQIQ
 # DOzRdXezgbkTF+1Qo8ZgrzAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAig
 # AoAAoQKAADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgEL
-# MQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUwtZEoy/5l8dW1ljkrjaW
-# RPvl+HgwDQYJKoZIhvcNAQEBBQAEggEAc3S+XjkYhFQOGB/JQ+TRSq3BzVJ3dZpd
-# tSv+4XaQVqvcFApDkJ8zaGoj4T3xcMuC9yXEdHecuZNUma5anyvDBF1ZojHRgXcM
-# GQzuCWvrc+2C5FRNHBkTKclM17m/lzyrgBrBlM23MX4loOdyHDqb8JecMGHTZ2sy
-# TY1XVdZUUeyT/UQNoaF1OCVc6TncJBe0OrGWPvQXxd3Sti/OEZucUfdkinSlIU6I
-# CabDT2JnoRTPaVQ3jVrHbjcE3YVech9ZKIxk3lKSOwi+cjYu3fHnm8vRehw33cwz
-# hElf5hMkzMy9FuiNO7A3bpMWTBt2peBQwzHuWOpW2MssXqUrlKcRp6GCAgswggIH
+# MQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUKxGjBOhYfIspZFAkqnoS
+# 0fZswpQwDQYJKoZIhvcNAQEBBQAEggEAH8/62j7CLGN555WK0TIeBpqmos1X3Sn2
+# 4eS36u3RB/6KnvDgIN/0d3LamvhXjMRuJUxBjQKhRuXv8Z8pk81UdZk357MzSHn8
+# uHvKcluvVUMxvw46+8XRJrPU6hwadlsWaK0f7STuseqhcjX+t0x3pqgV+l6/AIRM
+# F3zZ2L/GAyl1n1GWfjZL6GbWvDRQCgGqaWbpekKdDXmkckWNb7ra5cKVM5s146Dw
+# 2rqUmYlSjGm/XC8d8iusYiIvdyBiNew2/iCAu35HlY9PCsCEXev0krzZjtAA5Ty0
+# lTmjKcN8KcvXmh8wGdycdTp5tDmIDeEuzUsapSQqMfkZw6wKSEj5ZaGCAgswggIH
 # BgkqhkiG9w0BCQYxggH4MIIB9AIBATByMF4xCzAJBgNVBAYTAlVTMR0wGwYDVQQK
 # ExRTeW1hbnRlYyBDb3Jwb3JhdGlvbjEwMC4GA1UEAxMnU3ltYW50ZWMgVGltZSBT
 # dGFtcGluZyBTZXJ2aWNlcyBDQSAtIEcyAhAOz/Q4yP6/NW4E2GqYGxpQMAkGBSsO
 # AwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEP
-# Fw0yMDA3MzAwMzEzMjZaMCMGCSqGSIb3DQEJBDEWBBQ1UPng6B7s3al3GaorCj91
-# 58hJ4DANBgkqhkiG9w0BAQEFAASCAQALDMMf3XwbQrfK5h1Wgnk8OKEg1897olHQ
-# 0chRWeYETrHksiaZ9hUy6RsJWlbuIDUhXQgvfqtKRdIRdSNG+NLpRTvcBqZsaSta
-# /OqMHw0j5FKVgD8jT5TvwjtWIXIg0N7pNf8DkV3E6wafkd/KOtwX2fAFs2NI1vLu
-# G9mQjCSRcMQOHJbml9F8Y00P7ViToQH/Qx39h2zeYPCA5gW1DIMI+8bVhP4qKVGX
-# ufzIJf1cy3555C9Hxi1MxhmBLlqWIIOSDH6gtdRoyCBQbj4oSbLRMmETVk4MkGEn
-# 9m6GPIoUJPdHLmKp8XnVoiOdDdN76zDVzu0gtOaVDZKFXDK3y3SY
+# Fw0yMDA4MzEwNjQzNTdaMCMGCSqGSIb3DQEJBDEWBBQdveAGXCwIcsJHfzP/PEJ3
+# NdaM3DANBgkqhkiG9w0BAQEFAASCAQBBWBMkv8LF0HmlMXxgp/RkCqhQPhHtaW5b
+# 6kQ+1aTsaylFw/6xNkH4DpiVSr+qvDfnhROUHTNt6d7qkf4oEoJU6Ju3pIdE6/sU
+# cXmZIb6bp/lOHASdtXrNHeDNrL1TV0f0AUi21QO3VE59wobVjmCroKh84iju91WW
+# qmJNTtsLu33jZFJka+cZT+K2EWmjFJld8f59T4ekXGKY4hviwtn1wY4jFtG7NHXC
+# 5o5gQ1wHoXWnpzxMouRr3WeYumtPadvvKEfWB+Oclht87MVsOaqnK/BXTv+u1jp7
+# UpUX2Pkxv/2S8iWENdNnm0N8ooS4SEKR13AZefH4x3TZJRkb1yd8
 # SIG # End signature block

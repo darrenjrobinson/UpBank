@@ -4,8 +4,6 @@ PowerShell Module for [Up Bank](https://up.com.au/)
 
 [![PSGallery Version](https://img.shields.io/powershellgallery/v/UpBank.svg?style=flat&logo=powershell&label=PSGallery%20Version)](https://www.powershellgallery.com/packages/UpBank) [![PSGallery Downloads](https://img.shields.io/powershellgallery/dt/UpBank.svg?style=flat&logo=powershell&label=PSGallery%20Downloads)](https://www.powershellgallery.com/packages/UpBank)
 
-[Associated Blogpost](https://blog.darrenjrobinson.com/up-bank-powershell-module/)
-
 ## Description
 A PowerShell Module enabling simple methods for accessing your Up Bank Account. 
 
@@ -17,7 +15,7 @@ Install-Module -name UpBank
 ```
 
 ## Cmdlets
-The module currently contains 9 cmdlets 
+The module currently contains 12 cmdlets 
 
 - ### Set-UpBankCredential
 Sets the default Up Bank API credentials used to authenticate to the Up Bank API
@@ -48,13 +46,22 @@ Retrieve a specific Up Bank Transaction.
 - ### Get-UpBankAccountTransactions
 Retrieve a list of all transactions for a specific account for the currently authenticated user.
 
+- ### Get-UpBankCategories 
+Retrieve a list of all categories.
+
+- ### Get-UpBankCategory 
+Retrieve a specific Up Bank Category.
+
+- ### Get-UpBankTags 
+Retrieve a list of all tags.
+
 ## Set Up Bank Credentials
 The module supports multiple sets of credentials. One set can be set as default and will be automatically and securely loaded when the module loads. The avoids having to set the credentials everytime. 
 
 To be used in conjunction with **Save-UpBankCredential** to negate the need to use **Set-UpBankCredential** each time the module is loaded. 
 
 Set-UpBankCredential needs to be passed a PowerShell Credential object. This can be generated using **_Get-Credential_**
-The value provided for User (when using get-credential) is used as the profile name. Generate your Up Bank [Personal Access Token here](https://api.up.com.au/getting_started)
+The value provided for User (when using get-credential) is used as the profile name.
 
 ```
 $myUpBankCredentials = Get-Credential
