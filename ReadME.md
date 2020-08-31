@@ -49,7 +49,7 @@ Retrieve a list of all transactions for a specific account for the currently aut
 - ### Get-UpBankCategories 
 Retrieve a list of all categories.
 
-- ### Get-UpBankCategory 
+- ### Get-UpBankCategory
 Retrieve a specific Up Bank Category.
 
 - ### Get-UpBankTags 
@@ -194,6 +194,27 @@ Get-UpBankAccountTransactions -accountID $myAccounts[1].id -since 2020-05-27T09:
 ## Get the Transactions up to a date and time for a specific account (defaults to 100)
 ```
 Get-UpBankAccountTransactions -accountID $myAccounts[1].id -until 2020-07-27T01:02:03+10:00 
+```
+
+## Get-UpBankCategories 
+Retrieve a list of all categories.
+
+```
+Get-UpBankCategories
+```
+
+## Get-UpBankCategory
+Retrieve a specific Up Bank Category.
+
+```
+Get-UpBankCategory -id technology
+```
+
+## Get-UpBankTags 
+Retrieve a list of all tags.
+
+```
+Get-UpBankTags 
 ```
 
 ## How can I contribute to the project?
